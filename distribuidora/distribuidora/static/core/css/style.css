@@ -1,0 +1,24 @@
+﻿/* Estilos para Home hermoso */
+.hero {
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  padding: 50px 0;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #343a40;
+}
+.hero p {
+  font-size: 1.25rem;
+  color: #6c757d;
+}
+.carousel-item img {
+  height: 500px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+.quick-links a {
+  margin: 0 15px;
+  font-size: 1.1rem;
+}

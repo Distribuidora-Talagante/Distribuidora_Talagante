@@ -1,0 +1,72 @@
+﻿{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Home - Distribuidora Talagante{% endblock %}
+{% block content %}
+<div class="hero">
+  <h1>Bienvenido a Distribuidora Talagante</h1>
+  <p>Los mejores alimentos frescos y de calidad al por mayor. Descubre nuestras ofertas exclusivas para tu negocio.</p>
+</div>
+
+<!-- Carrusel central -->
+<div class="container mt-5">
+  <div id="carruselProductos" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carruselProductos" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carruselProductos" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carruselProductos" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://via.placeholder.com/1200x500?text=Frutas+Frescas" class="d-block w-100" alt="Frutas Frescas">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Frutas Frescas</h5>
+          <p>Las mejores frutas de temporada, al por mayor.</p>
+          <a href="{% url 'catalogo' %}" class="btn btn-light">Ver Más</a>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://via.placeholder.com/1200x500?text=Verduras+Organicas" class="d-block w-100" alt="Verduras Organicas">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Verduras Organicas</h5>
+          <p>Frescas y saludables para tu negocio.</p>
+          <a href="{% url 'catalogo' %}" class="btn btn-light">Ver Más</a>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://via.placeholder.com/1200x500?text=Productos+Lacteos" class="d-block w-100" alt="Productos Lacteos">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Productos Lacteos</h5>
+          <p>Alta calidad a precios competitivos.</p>
+          <a href="{% url 'catalogo' %}" class="btn btn-light">Ver Más</a>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carruselProductos" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carruselProductos" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
+</div>
+
+<!-- Sección adicional -->
+<div class="container mt-5 mb-5">
+  <div class="row text-center">
+    <div class="col-md-4">
+      <h3>Productos Frescos</h3>
+      <p>Directo del proveedor a tu negocio.</p>
+    </div>
+    <div class="col-md-4">
+      <h3>Precios Competitivos</h3>
+      <p>Ahorra con nuestras ofertas al por mayor.</p>
+    </div>
+    <div class="col-md-4">
+      <h3>Entrega Rápida</h3>
+      <p>Envíos en Talagante y alrededores.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

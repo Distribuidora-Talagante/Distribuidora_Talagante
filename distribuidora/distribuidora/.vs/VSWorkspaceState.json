@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\core",
+    "\\core\\templates",
+    "\\core\\templates\\core",
+    "\\distribuidora",
+    "\\static",
+    "\\static\\core",
+    "\\static\\core\\css"
+  ],
+  "SelectedNode": "\\core\\views.py",
+  "PreviewInSolutionExplorer": false
+}
