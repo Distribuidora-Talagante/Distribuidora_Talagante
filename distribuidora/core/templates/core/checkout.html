@@ -1,0 +1,40 @@
+﻿{% extends "base.html" %} <!-- Asegúrate de que extienda tu plantilla base si la tienes -->
+{% block content %}
+<h2>Proceder al Pago</h2>
+{% if carrito %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio Unitario</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.producto.nombre }}</td>
+                <td>${{ item.producto.precio }}</td>
+                <td>{{ item.cantidad }}</td>
+                <td>${{ item.subtotal }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                <td><strong>${{ total }}</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+    <!-- Botón para integración con Mercado Pago (placeholder) -->
+    <form action="{% url 'procesar_pago' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Pagar con Mercado Pago</button>
+    </form>
+    <a href="{% url 'carrito' %}" class="btn btn-secondary">Volver al Carrito</a>
+{% else %}
+    <p>No hay ítems para pagar. <a href="{% url 'catalogo' %}">Volver al catálogo</a></p>
+{% endif %}
+{% endblock %}

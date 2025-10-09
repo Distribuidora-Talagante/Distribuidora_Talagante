@@ -1,0 +1,43 @@
+﻿{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Carrito - Distribuidora Talagante{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Tu Carrito</h1>
+    {% if items %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.producto.nombre }}</td>
+                        <td>{{ item.cantidad }}</td>
+                        <td>${{ item.producto.precio }}</td>
+                        <td>${{ item.subtotal }}</td>
+                        <td>
+                            <a href="{% url 'remove_from_carrito' item.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                    <td colspan="2"><strong>${{ total }}</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+        <a href="{% url 'checkout' %}" class="btn btn-success">Proceder al Pago</a>  <!-- Placeholder para integración con Mercado Pago -->
+    {% else %}
+        <p>Tu carrito está vacío. <a href="{% url 'catalogo' %}">Volver al catálogo</a></p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -10,9 +10,10 @@ class Perfil(models.Model):
     nombre_completo = models.CharField(max_length=100, validators=[RegexValidator(r'^[a-zA-Z\s]+$', 'Solo letras y espacios.')])
     rut = models.CharField(
         max_length=12, unique=True,
-        validators=[RegexValidator(r'^\d{1,2}\.\d{3}\.\d{3}-[\dkK]$', 'Formato RUT invalido (ej: 12.345.678-9).')]
+        validators=[RegexValidator(r'^\d{1,2}\.\d{3}\.\d{3}-[\dkK]$', 'Formato RUT inválido (ej: 12.345.678-9).')]
     )
     telefono = models.CharField(max_length=15, blank=True)
+    es_admin = models.BooleanField(default=False)  # Nuevo campo para distinguir Admin/Cliente
 
     def __str__(self):
         return f"{self.nombre_completo} ({self.rut})"
@@ -21,7 +22,7 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=100)
     precio = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
     categoria = models.CharField(max_length=50)
-    stock = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    stock = models.IntegerField(default=0, validators=[MinValueValidator(0)]) 
     fecha_vencimiento = models.DateField(null=True, blank=True)
     imagen = models.ImageField(upload_to='productos/', blank=True)
     activo = models.BooleanField(default=True)
