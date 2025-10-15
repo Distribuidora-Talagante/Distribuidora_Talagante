@@ -1,0 +1,64 @@
+<!-- Órdenes Pendientes -->
+<div id="ordenes-list" class="mt-5">
+    <h2>Órdenes Pendientes</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Fecha</th>
+                <th>Ítems</th>
+                <th>Total (CLP)</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for orden in ordenes %}
+                <tr>
+                    <td>{{ orden.id }}</td>
+                    <td>{{ orden.usuario.username }}</td>
+                    <td>{{ orden.fecha }}</td>
+                    <td>
+                        <ul>
+                            {% for item in orden.itemorden_set.all %}
+                                <li>{{ item.producto.nombre }} x {{ item.cantidad }} - ${{ item.cantidad|mul:item.precio|floatformat:2 }}
+                                    <a href="?delete_item={{ item.id }}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar {{ item.producto.nombre }}?')">Eliminar</a>
+                                </li>
+                            {% empty %}
+                                <li>No hay ítems</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>{{ orden.total|floatformat:2 }}</td>
+                    <td>{{ orden.get_estado_display }}</td>
+                    <td>
+                        <a href="{% url 'orden_detail' orden.id %}" class="btn btn-sm btn-info">Ver Detalle</a>
+                        <a href="{% url 'update_orden_status' orden.id %}" class="btn btn-sm btn-warning">Actualizar Estado</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="7">No hay órdenes pendientes.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+        <!-- Paginación -->
+        {% if ordenes.has_other_pages %}
+            <nav aria-label="Paginación">
+                <ul class="pagination">
+                    {% if ordenes.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ ordenes.previous_page_number }}{% if estado_filtro %}&estado={{ estado_filtro }}{% endif %}">Anterior</a></li>
+                    {% endif %}
+                    <li class="page-item active"><span class="page-link">Página {{ ordenes.number }} de {{ ordenes.paginator.num_pages }}</span></li>
+                    {% if ordenes.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ ordenes.next_page_number }}{% if estado_filtro %}&estado={{ estado_filtro }}{% endif %}">Siguiente</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
